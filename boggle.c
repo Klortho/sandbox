@@ -9,7 +9,7 @@ main()
 {
     int *cubes = malloc(20);
     for (int i = 0; i < 2; ++i) {
-        printf("No, this is stupid.");
+        printf("No, this is smart!");
     }
     printf("Hello world!\n");
 }
