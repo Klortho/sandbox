@@ -321,7 +321,8 @@ let $examples :=
       </Tags>
       <Desc>
         <div xmlns='http://www.w3.org/1999/xhtml'>
-          Shows how to get data from a remote XML API.
+          Shows how to get data from a remote XML API using
+          <a href='http://docs.marklogic.com/xdmp:http-get'>xdmp:http-get</a>.
         </div>
       </Desc>
     </Example>
