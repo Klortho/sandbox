@@ -311,6 +311,21 @@ let $examples :=
       </Desc>
     </Example>
 
+    <Example href='eutils.xqy'>
+      <Title>EUtils</Title>
+      <Modules>
+        <Module>eutils.xqy</Module>
+      </Modules>
+      <Tags>
+        <Tag>APIs</Tag>
+      </Tags>
+      <Desc>
+        <div xmlns='http://www.w3.org/1999/xhtml'>
+          Shows how to get data from a remote XML API.
+        </div>
+      </Desc>
+    </Example>
+
 <!--
     If no @href is given, the first Module is used.  @href allows you
     to override the hyperlink URL; for example, adding query-string
