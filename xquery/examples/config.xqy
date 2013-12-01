@@ -3,8 +3,8 @@
   depending on where these examples are installed.
 :)
 
-module namespace config="http://www.chrisbaloney.com/ns/config";
+module namespace config="http://chrismaloney.org/ns/config";
 
-declare variable $baseDir := "C:/Chris/MarkLogic/TestServer";
-declare variable $uploadDir := "C:/Chris/MarkLogic/upload";
+declare variable $baseDir := "/home/marklogic/marklogic-sandbox/xquery";
+declare variable $uploadDir := "/home/marklogic/marklogic-sandbox/upload";
 

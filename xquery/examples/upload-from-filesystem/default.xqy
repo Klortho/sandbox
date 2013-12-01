@@ -1,6 +1,6 @@
 xquery version '1.0-ml';
 
-import module namespace fsup="http://www.chrisbaloney.com/ns/filesystem-upload"
+import module namespace fsup="http://chrismaloney.org/ns/filesystem-upload"
        at "upload-model.xqy";
        
 <html xmlns='http://www.w3.org/1999/xhtml'>

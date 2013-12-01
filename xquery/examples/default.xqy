@@ -1,10 +1,10 @@
 xquery version "1.0-ml";
 
-import module namespace config="http://www.chrisbaloney.com/ns/config"
+import module namespace config="http://chrismaloney.org/ns/config"
        at "config.xqy";
 
 declare namespace h="http://www.w3.org/1999/xhtml";
-declare namespace cfb="http://www.chrisbaloney.com/ns/doc";
+declare namespace cfb="http://chrismaloney.org/ns/doc";
 
 (:
   This function takes the name of a tag, which might have embedded spaces,
@@ -29,7 +29,7 @@ declare function cfb:makeTagLink($tagName as xs:string)
   href='http://developer.marklogic.com/code/#bill'>Shakespeare demo app</a>.
 :)
 let $examples :=
-  <Examples xmlns='http://www.chrisbaloney.com/ns/doc'>
+  <Examples xmlns='http://chrismaloney.org/ns/doc'>
     <Title>Mark Logic Examples</Title>
 
     <Example>
@@ -261,23 +261,6 @@ let $examples :=
     </Example>
 
     <Example>
-      <Title>The name() function anomaly</Title>
-      <Modules>
-        <Module>name-function.xqy</Module>
-      </Modules>
-      <Tags>
-        <Tag>Anomalies</Tag>
-      </Tags>
-      <Desc>
-        <div xmlns='http://www.w3.org/1999/xhtml'>
-          Investigate an anomaly in the name() function.
-          I first discovered this while looking at the "Count root elements"
-          example.
-        </div>
-      </Desc>
-    </Example>
-
-    <Example>
       <Title>Invoke load document</Title>
       <Modules>
         <Module>invoke-load-doc.xqy</Module>
@@ -313,21 +296,6 @@ let $examples :=
         </div>
       </Desc>
     </Example>
-
-    <Example href='LoadingBooks/default.xqy'>
-      <Title>Loading Bookshelf Books XML</Title>
-      <Modules base='LoadingBooks'>
-        <Module>default.xqy</Module>
-      </Modules>
-      <Tags>
-        <Tag>Anomaly</Tag>
-      </Tags>
-      <Desc>
-        <div xmlns='http://www.w3.org/1999/xhtml'>
-        </div>
-      </Desc>
-    </Example>
-
 
 <!--
     If no @href is given, the first Module is used.  @href allows you

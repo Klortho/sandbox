@@ -40,7 +40,7 @@ declare variable $allNames := $all/name();
   for $n in distinct-values(/*/name())
   order by $n
   return 
-    concat($n, " : ", count(/*[name() = $n])),
+    concat("  Number of '", $n, "': ", count(/*[name() = $n])),
     
   "---------------------------------------",
 

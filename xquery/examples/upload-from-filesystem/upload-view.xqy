@@ -1,6 +1,6 @@
-module namespace fsupv="http://www.chrisbaloney.com/ns/filesystem-upload-view";
+module namespace fsupv="http://chrismaloney.org/ns/filesystem-upload-view";
 
-import module namespace fsup="http://www.chrisbaloney.com/ns/filesystem-upload"
+import module namespace fsup="http://chrismaloney.org/ns/filesystem-upload"
        at "upload-model.xqy";
 
 declare namespace xpath="http://www.w3.org/2005/xpath-functions";

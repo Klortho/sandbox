@@ -1,4 +1,4 @@
-module namespace fsup="http://www.chrisbaloney.com/ns/filesystem-upload";
+module namespace fsup="http://chrismaloney.org/ns/filesystem-upload";
 declare namespace xpath="http://www.w3.org/2005/xpath-functions";
 (:declare namespace html="http://www.w3.org/1999/xhtml";:)
 declare namespace dir="http://marklogic.com/xdmp/directory";
@@ -22,7 +22,7 @@ declare function allUploadFiles()
   This function returns a bit of XML that represents all the regular files
   (subdirectories are not included in the list)
   in a directory tree, in a flattened out structure, like this:
-    <files xmlns='http://www.chrisbaloney.com/ns/filesystem-upload'>
+    <files xmlns='http://chrismaloney.org/ns/filesystem-upload'>
       <file>
         <rel-pathname>foo/test.txt</rel-pathname>
         <fs-abs-pathname>C:/Chris/.../upload/foo/test.txt</fs-abs-pathname>
@@ -51,7 +51,7 @@ declare function allDirFiles($baseDir as xs:string, $relDir as xs:string)
     if ($relDir = "") then "" else xpath:concat($relDir, "/")
     
   return
-    <files xmlns="http://www.chrisbaloney.com/ns/filesystem-upload">
+    <files xmlns="http://chrismaloney.org/ns/filesystem-upload">
     {
       for $entry in $directory/dir:entry
       return 
@@ -128,7 +128,7 @@ return
 (:
   uploadFiles($files)
   This function takes a list of files to upload, which looks like this:
-    <files xmlns='http://www.chrisbaloney.com/ns/filesystem-upload'>
+    <files xmlns='http://chrismaloney.org/ns/filesystem-upload'>
       <file>
         <db-uri>/foo/test.txt</db-uri>
         <fs-abs-pathname>C:/Chris/.../upload/foo/test.txt</fs-abs-pathname>
@@ -138,7 +138,7 @@ return
   It then attempts to upload one at a time, using uploadOneFile().  It will
   produce output that indicates the pass/fail status of each attempt, like
   this:
-    <files xmlns='http://www.chrisbaloney.com/ns/filesystem-upload'>
+    <files xmlns='http://chrismaloney.org/ns/filesystem-upload'>
       <file>
         <db-uri>foo/test.txt</db-uri>
         <fs-abs-pathname>C:/Chris/.../upload/foo/test.txt</fs-abs-pathname>

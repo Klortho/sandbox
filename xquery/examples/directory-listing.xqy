@@ -18,7 +18,7 @@ declare namespace dir = "http://marklogic.com/xdmp/directory";
 declare namespace error = "http://marklogic.com/xdmp/error";
 
 (: This gives us $config:baseDir :)
-import module namespace config="http://www.chrisbaloney.com/ns/config"
+import module namespace config="http://chrismaloney.org/ns/config"
        at "config.xqy";
 
 
@@ -41,7 +41,7 @@ try {
                  else (
                    if (count($dirParam) = 1)
                    then string($dirParam)
-                   else error(QName("http://www.chrisbaloney.com/ns/error", "Error"), 
+                   else error(QName("http://chrismaloney.org/ns/error", "Error"), 
                               "OMGWTFBBQ!  You gave me to two values of 'dir', dude ...")
                  )
 

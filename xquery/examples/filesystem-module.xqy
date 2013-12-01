@@ -27,7 +27,7 @@ declare function fs:getPathQueryParam($baseDir as xs:string, $paramName as xs:st
                  else (
                    if (count($param) = 1)
                    then string($param)
-                   else error(QName("http://www.chrisbaloney.com/ns/error", "Error"), 
+                   else error(QName("http://chrismaloney.org/ns/error", "Error"), 
                               concat("OMGWTFBBQ!  ",
                                      "You gave me to more than one value of '", $paramName,
                                      "', dude ..."))

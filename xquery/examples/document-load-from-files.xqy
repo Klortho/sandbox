@@ -17,7 +17,7 @@ xquery version "1.0-ml";
 :)
 
 (: This gives us $config:baseDir, which points to the test server install dir  :)
-import module namespace config="http://www.chrisbaloney.com/ns/config"
+import module namespace config="http://chrismaloney.org/ns/config"
        at "config.xqy";
 (: But our base dir is in the examples subdirectory  :)
 declare variable $baseDir := concat($config:baseDir, "/examples/");
@@ -43,11 +43,11 @@ xdmp:document-load(concat($baseDir, "Docbook5-Sample.xml"),
   </head>
   <body>
     <p>
-      Loaded <b>C:\Chris\MarkLogic\TestServer\examples\Docbook4-Sample.xml</b>
+      Loaded <b>/examples/Docbook4-Sample.xml</b>
       as "/documents/Docbook4-Sample.xml".
     </p>
     <p>
-      Loaded <b>C:\Chris\MarkLogic\TestServer\examples\Docbook5-Sample.xml</b>
+      Loaded <b>/examples/Docbook5-Sample.xml</b>
       as "/documents/Docbook5-Sample.xml".
     </p>
   </body>

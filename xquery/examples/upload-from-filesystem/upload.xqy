@@ -6,7 +6,7 @@ xquery version '1.0-ml';
   Steps:
     - Read the upload directory recursively, constructing a node that has a flat list
       of files to add, like this:
-        <files xmlns='http://www.chrisbaloney.com/ns/filesystem-upload'>
+        <files xmlns='http://chrismaloney.org/ns/filesystem-upload'>
           <file>
             <rel-pathname>foo/test.txt</rel-pathname>
             <fs-abs-pathname>C:/Chris/.../upload/foo/test.txt</fs-abs-pathname>
@@ -19,9 +19,9 @@ xquery version '1.0-ml';
 
 (: Question:  can't I have two modules in the same namespace?  :)
 
-import module namespace fsup="http://www.chrisbaloney.com/ns/filesystem-upload"
+import module namespace fsup="http://chrismaloney.org/ns/filesystem-upload"
        at "upload-model.xqy";
-import module namespace fsupv="http://www.chrisbaloney.com/ns/filesystem-upload-view"
+import module namespace fsupv="http://chrismaloney.org/ns/filesystem-upload-view"
        at "upload-view.xqy";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
@@ -44,7 +44,7 @@ let $allFiles := fsup:allUploadFiles()
   <rel-pathname> into <db-uri>.  This probably should be moved to the model.
 :)
 let $filesToUpload :=
-  <files xmlns="http://www.chrisbaloney.com/ns/filesystem-upload">
+  <files xmlns="http://chrismaloney.org/ns/filesystem-upload">
   {
     for $f in $allFiles/file
     return

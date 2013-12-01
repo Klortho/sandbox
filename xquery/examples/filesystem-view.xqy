@@ -13,7 +13,7 @@ declare namespace dir = "http://marklogic.com/xdmp/directory";
 declare namespace error = "http://marklogic.com/xdmp/error";
 
 (: This gives us $config:baseDir, which points to the test server install dir  :)
-import module namespace config="http://www.chrisbaloney.com/ns/config"
+import module namespace config="http://chrismaloney.org/ns/config"
        at "config.xqy";
 (: But our base dir is in the examples subdirectory :)  
 declare variable $baseDir := concat($config:baseDir, "/examples");
