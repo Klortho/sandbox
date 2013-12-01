@@ -1,0 +1,157 @@
+<session id="6034bde04e73db35" xmlns="com.marklogic.developer.cq.session"><sec:user xmlns:sec="http://marklogic.com/xdmp/security">admin</sec:user><sec:user-id xmlns:sec="http://marklogic.com/xdmp/security">7071164303237443533</sec:user-id><created xmlns:sess="com.marklogic.developer.cq.session">2010-04-03T08:29:41.786-04:00</created>
+  <name>New Session</name>
+  
+  
+<last-modified>2010-05-01T18:33:16.183-04:00</last-modified><query-buffers active="1" rows="16" cols="80">
+<query content-source="as:16264969344664865252:">xquery version "1.0-ml";
+
+/t:status</query>
+<query content-source="as:16264969344664865252:">doc('/documents/Docbook5-Sample.xml')
+</query>
+<query content-source="as:16264969344664865252:">xquery version "1.0-ml";
+(: buffer 3 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query content-source="as:16264969344664865252:">xquery version "1.0-ml";
+(: buffer 4 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 5 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 6 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 7 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 8 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 9 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 10 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query content-source="as:16264969344664865252:">(: new query :)
+for $i in collection()
+return document-uri($i)</query>
+<query>(: new query :)
+1</query>
+<query>(: new query :)
+1</query>
+</query-buffers><query-history>
+<query>doc('/documents/Docbook5-Sample.xml')
+</query>
+<query>doc('/documents/Docbook4-Sample.xml')
+</query>
+<query>doc('freakybooks.xml')
+</query>
+<query>doc("/f/fs1/self-ref-limericks.txt")
+</query>
+<query>doc("/f/fs1/gwb.jpg")
+</query>
+<query>doc("/f/sample.xml")
+</query>
+<query>doc("/documents/Docbook-test2.xml")
+</query>
+<query>/article
+</query>
+<query>doc("/documents/Docbook4-Sample.xml")
+</query>
+<query>doc("/documents/Docbook4-Example.xml")
+</query>
+<query>doc("/documents/Docbook-test.xml")
+</query>
+<query>declare namespace t="http://www.marklogic.com/ns/nwalsh/twitter/tweets";
+/t:account</query>
+<query>(: new query :)
+for $i in collection()
+return document-uri($i)</query>
+<query>xquery version "1.0-ml";
+(: buffer 2 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+
+/t:status</query>
+<query>xquery version "1.0-ml";
+
+doc("/documents/foo.xml")</query>
+<query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+import module namespace admin = "http://marklogic.com/xdmp/admin" 
+  at "/Marklogic/admin.xqy";
+
+&lt;p&gt;{
+  let $config := admin:get-configuration()
+  return 
+    for $hostId in admin:get-host-ids($config)
+    return (
+      &lt;span&gt;{$hostId}&lt;/span&gt;,
+      &lt;br/&gt;
+    )
+}&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+import module namespace admin = "http://marklogic.com/xdmp/admin" 
+  at "/Marklogic/admin.xqy";
+
+&lt;p&gt;{
+  let $config := admin:get-configuration()
+  return 
+    for $hostId in admin:get-host-ids($config)
+    return (
+      &lt;span&gt;$hostId&lt;/span&gt;,
+      &lt;br/&gt;
+    )
+}&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+import module namespace admin = "http://marklogic.com/xdmp/admin" 
+  at "/Marklogic/admin.xqy";
+
+&lt;p&gt;{
+  let $config := admin:get-configuration()
+  return 
+    for $hostId in admin:get-host-ids()
+    return (
+      &lt;span&gt;$hostId&lt;/span&gt;,
+      &lt;br/&gt;
+    )
+}&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+import module namespace admin = "http://marklogic.com/xdmp/admin" 
+  at "/Marklogic/admin.xqy";
+&lt;p&gt;{
+  for $hostId in admin:get-host-ids()
+  return (
+    &lt;span&gt;$hostId&lt;/span&gt;,
+    &lt;br/&gt;
+  )
+}&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+import module namespace admin = "http://marklogic.com/xdmp/admin" 
+  at "/Marklogic/admin.xqy";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+<query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+import module namespace admin = "http://marklogic.com/xdmp/admin" 
+  at "/Marklogic/admin.xqy"
+&lt;p&gt;hello world&lt;/p&gt;</query>
+</query-history><active-tab>1</active-tab></session>

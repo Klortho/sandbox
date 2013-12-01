@@ -1,0 +1,46 @@
+<session id="7e067d415d356b9c" xmlns="com.marklogic.developer.cq.session"><sec:user xmlns:sec="http://marklogic.com/xdmp/security">admin</sec:user><sec:user-id xmlns:sec="http://marklogic.com/xdmp/security">7071164303237443533</sec:user-id><created xmlns:sess="com.marklogic.developer.cq.session">2010-05-01T18:33:51.205-04:00</created><last-modified xmlns:sess="com.marklogic.developer.cq.session">2010-05-01T18:33:51.205-04:00</last-modified>
+  <name>New Session</name>
+  <query-buffers>
+    <query>xquery version "1.0-ml";
+(: buffer 1 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 2 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 3 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 4 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 5 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 6 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 7 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 8 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 9 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+    <query>xquery version "1.0-ml";
+(: buffer 10 :)
+declare namespace html = "http://www.w3.org/1999/xhtml";
+&lt;p&gt;hello world&lt;/p&gt;</query>
+  </query-buffers>
+  <query-history/>
+</session>
