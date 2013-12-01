@@ -5,4 +5,4 @@ xquery version "1.0-ml";
   web service.
 :)
 
-doc("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=20301510&version=2.0")
+doc("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&amp;id=20301510&amp;version=2.0")
