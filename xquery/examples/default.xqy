@@ -192,7 +192,6 @@ let $examples :=
       </Desc>
     </Example>
 
-
     <Example href='filesystem-view.xqy?file=fun-stuff'>
       <Title>Filesystem view</Title>
       <Modules>
@@ -293,6 +292,21 @@ let $examples :=
         <div xmlns='http://www.w3.org/1999/xhtml'>
           Generating this examples page involves a little more XML-to-XHTML
           munging in XQuery, and the addition of some CSS and JavaScript.
+        </div>
+      </Desc>
+    </Example>
+
+
+    <Example href='xslt-invoke.xqy'>
+      <Title>XSLT Invoke</Title>
+      <Modules>
+        <Module>xslt-invoke.xqy</Module>
+      </Modules>
+      <Tags>
+        <Tag>XSLT</Tag>
+      </Tags>
+      <Desc>
+        <div xmlns='http://www.w3.org/1999/xhtml'>
         </div>
       </Desc>
     </Example>
