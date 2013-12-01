@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+
+(:  __________________________________________________________
+ ::  (Q7.3)
+ ::  Select all elements using datatypes from
+ ::  "XML Schema: Part 2" datatypes.
+ :: __________________________________________________________
+  :)
+declare namespace dt = "http://www.w3.org/2001/XMLSchema";
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q7.3:  attribute within NS 'dt'</td>
+</tr>
+<tr><td>
+  <ul>
+  {
+    for $r in (
+
+    doc("auction.xml")//*[@dt:*]
+    )
+    return
+      <li>{ data($r) }</li>
+  }
+  </ul>
+</td></tr>
+</table>
+
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q7.3x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

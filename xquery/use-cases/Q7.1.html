@@ -1,0 +1,58 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q7.1)
+ ::  List all unique namespaces used in the sample data. 
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q7.1:  list NS</td>
+</tr>
+<tr>
+  <td><ul>
+  {
+    for $r in (
+
+    for $n in distinct-values(
+                  for $i in (doc("auction.xml")//* | doc("auction.xml")//@*)
+                  return namespace-uri($i) 
+               )
+    return  <ns>{$n}</ns>
+    )
+    return
+      <li>{ data($r) }</li>
+  }
+  </ul></td>
+</tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q7.1x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

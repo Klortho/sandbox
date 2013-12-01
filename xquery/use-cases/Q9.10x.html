@@ -1,0 +1,51 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (9.10)
+ ::  Write a function that determines whether the person listed
+ ::  in a billTo element is known to be a deadbeat, using a US
+ ::  database. 
+ :: __________________________________________________________
+  :)
+import schema namespace ipo="http://www.example.com/IPO" at "ipo.xsd";
+
+declare function local:deadbeat( $b as element(billTo, ipo:USAddress) )
+  as xs:boolean
+{
+   $b/name = doc("deadbeats.xml")/deadbeats/row/name
+}; 
+
+  for $p in doc("ipo.xml")//element(ipo:purchaseOrder)
+  where local:deadbeat( $p/element(billTo) )
+  return <warning>{ string($p/billTo/name) } is a known deadbeat!</warning>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q9.10.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

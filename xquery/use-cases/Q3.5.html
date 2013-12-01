@@ -1,0 +1,77 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q3.5)
+ ::  In Report1, what happened between the first Incision and
+ ::  the second Incision?   
+ :: __________________________________________________________
+  :)
+declare function local:precedes($a as node(), $b as node()) as xs:boolean 
+{
+    $a << $b
+      and
+    empty($a//node() intersect $b)
+};
+
+
+declare function local:follows($a as node(), $b as node()) as xs:boolean 
+{
+    $a >> $b
+      and
+    empty($b//node() intersect $a)
+};
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">  Use case Q3.5 result</td>
+</tr>
+<tr>
+  <td>
+    The following happened between the first incision and
+    the second incision:
+  <ul>
+  { 
+  for $r in (
+
+    let $proc := doc("report1.xml")//section[section.title="Procedure"][1]
+    for $n in $proc//node()
+    where local:follows($n, ($proc//incision)[1])
+      and local:precedes($n, ($proc//incision)[2])
+    return $n
+  )
+  return <li>{ $r }</li>
+  }
+  </ul>
+  </td>
+</tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q3.5x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

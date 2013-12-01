@@ -1,0 +1,54 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (9.11)
+ ::  Write a function that computes the total price for a sequence
+ ::  of item elements.
+ :: __________________________________________________________
+  :)
+import schema namespace ipo="http://www.example.com/IPO" at "ipo.xsd";
+import module namespace calc = "http://www.example.com/calc" at "/use-cases/Q9.11-lib.xqy";
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q9.11: Total price function</td>
+</tr>
+<tr>
+{
+  for $p in doc("ipo.xml")//element(ipo:purchaseOrder)
+  where $p/shipTo/name="Helen Zoe"
+     and $p/@orderDate = xs:date("1999-12-01")
+  return <td>{ calc:total-price($p//item) }</td>
+}
+</tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q9.11x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (9.8)
+ ::  Find all comments found in an item shipped to Helen Zoe on
+ ::  the date 1999-12-01, including all elements in the substitution
+ ::  group for ipo:comment.
+ :: __________________________________________________________
+  :)
+import schema namespace ipo="http://www.example.com/IPO" at "ipo.xsd";
+
+<result>
+{
+  for $p in doc("ipo.xml")//element(ipo:purchaseOrder)
+  where $p/shipTo/name="Helen Zoe"
+    and $p/@orderDate = xs:date("1999-12-01")
+  return $p//schema-element(ipo:comment)
+}
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q9.8.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

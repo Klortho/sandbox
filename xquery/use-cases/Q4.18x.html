@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.18)
+ ::  List all users in alphabetic order by name. For each user,
+ ::  include descriptions of all the items (if any) that were
+ ::  bid on by that user, in alphabetic order.
+ :: __________________________________________________________
+  :)
+<result>
+  {
+    for $u in doc("users.xml")//user_tuple
+    order by $u/name
+    return
+        <user>
+            { $u/name }
+            {
+                for $b in distinct-values(doc("bids.xml")//bid_tuple
+                                             [userid = $u/userid]/itemno)
+                for $i in doc("items.xml")//item_tuple[itemno = $b]
+                let $descr := $i/description/text()
+                order by $descr
+                return
+                    <bid_on_item>{ $descr }</bid_on_item>
+            }
+        </user>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.18.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

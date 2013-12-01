@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.4)
+ ::  List item numbers and descriptions of items that have no bids. 
+ :: __________________________________________________________
+  :)
+<result>
+  {
+    for $i in doc("items.xml")//item_tuple
+    where empty(doc("bids.xml")//bid_tuple[itemno = $i/itemno])
+    return
+        <no_bid_item>
+            { $i/itemno }
+            { $i/description }
+        </no_bid_item>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.4.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

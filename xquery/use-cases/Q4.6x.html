@@ -1,0 +1,55 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.6)
+ ::  For each item whose highest bid is more than twice its
+ ::  reserve price, list the item number, description, reserve
+ ::  price, and highest bid. 
+ :: __________________________________________________________
+  :)
+<result>
+  {
+    for $item in doc("items.xml")//item_tuple
+    let $b := doc("bids.xml")//bid_tuple[itemno = $item/itemno]
+    let $z := max($b/bid)
+    where $item/reserve_price * 2 < $z
+    return
+        <successful_item>
+            { $item/itemno }
+            { $item/description }
+            { $item/reserve_price }
+            <high_bid>{$z }</high_bid>
+         </successful_item>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.6.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

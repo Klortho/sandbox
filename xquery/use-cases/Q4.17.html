@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.17)
+ ::  List the names of users, if any, who have bid on every item.
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q4.17:  Universal bidders:</td>
+</tr>
+<tr>
+  <th>Name</th>
+</tr>
+{
+  for $r at $i in (
+
+    for $u in doc("users.xml")//user_tuple
+    where 
+      every $item in doc("items.xml")//item_tuple satisfies 
+        some $b in doc("bids.xml")//bid_tuple satisfies 
+          ($item/itemno = $b/itemno and $u/userid = $b/userid)
+    return
+        $u/name
+  )
+  return
+    <tr>
+      <td>{ data($r/name) }</td>
+    </tr>
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q4.17x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

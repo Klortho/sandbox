@@ -1,0 +1,84 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q8.1)
+ ::  Convert the sample document from "partlist" format to
+ ::  "parttree" format.  In the result document, part containment
+ ::  is represented by containment of one <part> element inside
+ ::  another.  Each part that is not part of any other part
+ ::  should appear as a separate top-level element in the output
+ ::  document.
+ :: __________________________________________________________
+  :)
+declare function local:one_level($p as element()) as element()
+{
+    <part partid="{ $p/@partid }"
+          name="{ $p/@name }" >
+        {
+            for $s in doc("partlist.xml")//part
+            where $s/@partof = $p/@partid
+            return local:one_level($s)
+        }
+    </part>
+};
+
+declare function local:dump_one_level($p as element()) as element()
+{
+  <ul>
+    <li>
+    { 
+      xs:string($p/@name), " (",
+      if ($p/@partid) then
+        ("partid = ", xs:string($p/@partid), " ")
+      else (),
+      " )",
+
+      for $pp in $p/part return local:dump_one_level($pp)
+    }
+    </li>
+  </ul>
+};
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q8.1:  nested parts list</td>
+</tr>
+<tr><td>
+  {
+    for $p in doc("partlist.xml")//part[empty(@partof)]
+    let $pp := local:one_level($p)
+    return local:dump_one_level($pp)
+  }
+</td></tr>
+</table>
+
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q8.1x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

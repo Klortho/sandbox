@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.8)
+ ::  How many items were actioned (auction ended) in March 1999? 
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q4.8 result</td>
+</tr>
+<tr>
+  <td>The March, 1999 auction count is:
+  {
+  let $r := (
+
+  let $item := doc("items.xml")//item_tuple
+    [end_date >= xs:date("1999-03-01") and end_date <= xs:date("1999-03-31")]
+  return
+    <item_count>
+      { 
+        count($item) 
+      }
+    </item_count>
+  )
+  return
+    <font color="aa4400">{ $r }</font>
+  }
+  </td>
+</tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q4.8x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q7.7)
+ ::  Select the homepage of all auctions where both seller and 
+ ::  high bidder are registered at the same auctioneer.  
+ :: __________________________________________________________
+  :)
+declare namespace xdmp = "http://marklogic.com/xdmp";
+declare namespace ma = "http://www.example.com/AuctionWatch";
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q7.7:  Seller/bidder join across NS</td>
+</tr>
+<tr><td>
+  <ul>
+  {
+  for $r in (
+
+    for $a in doc("auction.xml")//ma:Auction
+    let $seller_id := $a/ma:Trading_Partners/ma:Seller/*:ID,
+        $buyer_id := $a/ma:Trading_Partners/ma:High_Bidder/*:ID
+    where namespace-uri($seller_id) = namespace-uri($buyer_id)
+    return
+        $a/ma:AuctionHomepage
+  )
+  return
+    <li>{ xdmp:quote($r) }</li>
+  }
+  </ul>
+</td></tr>
+</table>
+
+
+    </textarea>
+  </td>
+</tr>
+</table></td/</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q7.7x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

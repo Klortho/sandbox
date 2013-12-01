@@ -1,0 +1,72 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.13)
+ ::  For each user who has placed a bid, give the userid, name,
+ ::  number of bids, and average bid, in order by userid.
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q4.13:  bidder summary</td>
+</tr>
+<tr>
+  <th>Userid</th>
+  <th>Name</th>
+  <th>Bid count</th>
+  <th>Average bid</th>
+</tr>
+{
+  for $r at $i in (
+
+    for $uid in distinct-values(doc("bids.xml")//userid),
+        $u in doc("users.xml")//user_tuple[userid = $uid]
+    let $b := doc("bids.xml")//bid_tuple[userid = $uid]
+    order by $u/userid
+    return
+        <bidder>
+            { $u/userid }
+            { $u/name }
+            <bidcount>{ count($b) }</bidcount>
+            <avgbid>{ avg($b/bid) }</avgbid>
+        </bidder>
+  )
+  return
+    <tr bgcolor="{ if ($i mod 2) then "#eeeeff" else "#ffffff" }">
+      <td>{ data($r/userid) }</td>
+      <td>{ data($r/name) }</td>
+      <td align="center">{ data($r/bidcount) }</td>
+      <td>{ data($r/avgbid) }</td>
+    </tr>
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q4.13x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

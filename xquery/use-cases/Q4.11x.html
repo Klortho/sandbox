@@ -1,0 +1,55 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.11)
+ ::  List the item number and description of the item(s) that
+ ::  received the highest bid ever recorded, and the amount of
+ ::  that bid.
+ :: __________________________________________________________
+  :)
+  let $highbid := max(doc("bids.xml")//bid_tuple/bid)
+  return
+    <result>
+     {
+        for $item in doc("items.xml")//item_tuple,
+            $b in doc("bids.xml")//bid_tuple[itemno = $item/itemno]
+        where $b/bid = $highbid
+        return
+            <expensive_item>
+                { $item/itemno }
+                { $item/description }
+                <high_bid>{ $highbid }</high_bid>
+            </expensive_item>
+     }
+    </result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.11.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

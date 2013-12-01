@@ -1,0 +1,53 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (9.3)
+ ::  Write a function that tests a UK address to check if it
+ ::  has the right postal code.
+ :: __________________________________________________________
+ :: 
+ :: This is a library module, it cannot by evaluated on the fly
+ :: in this tool.  It is in the Use Cases directory as Q9.3-lib.xqy.
+  :)
+
+module namespace p="http://www.example.com/xq/postals";
+import schema namespace ipo = "http://www.example.com/IPO" at "ipo.xsd";
+import schema namespace pst = "http://www.example.com/postals" at "postals.xsd";
+
+declare function p:postal-ok($a as element(*, ipo:UKAddress))
+  as xs:boolean
+{
+  some $i in doc("postals.xml")/pst:postals/element(pst:row)
+  satisfies $i/pst:city = $a/city
+       and starts-with($a/postcode, $i/pst:prefix)
+};
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q9.3x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

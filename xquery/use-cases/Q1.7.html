@@ -1,0 +1,68 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q1.7)
+ ::  List the titles and years of all books published by
+ ::  Addison-Wesley after 1991, in alphabetic order.
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">  Use case Q1.7:  AW, after 1991, alphabetical by title</td>
+</tr>
+<tr>
+  <th align="left" width="40%">Year</th>
+  <th align="left">Title</th>
+</tr>
+{
+  for $r at $i in (
+
+  for $b in doc("http://bstore1.example.com/bib.xml")//book
+    where $b/publisher = "Addison-Wesley" and $b/@year > 1991
+    order by $b/title
+    return
+        <book>
+            { $b/@year }
+            { $b/title }
+        </book>
+  )
+  return
+    <tr bgcolor="{ if ($i mod 2) then "#eeeeff" else "#ffffff"  }">
+      <td>{ data($r/@year) }</td>
+      <td>{ data($r/title) }</td>
+    </tr>
+    
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q1.7x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+

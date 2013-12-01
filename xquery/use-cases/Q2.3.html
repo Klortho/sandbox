@@ -1,0 +1,60 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q2.3)
+ ::  How many sections are in Book1, and how many figures? 
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="3">  Use case Q2.3 result</td>
+</tr>
+<tr bgcolor="#eeeeff">
+  <th>Section count</th>
+  <th>Figure count</th>
+</tr>
+{
+for $r in (
+
+<result>
+  <section_count>{ count(doc("book.xml")//section) }</section_count>
+  <figure_count>{ count(doc("book.xml")//figure) }</figure_count>
+</result>
+)
+return
+  <tr>
+    <td align="center">{ data($r/section_count) }</td>
+    <td align="center">{ data($r/figure_count) }</td>
+  </tr>
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q2.3x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

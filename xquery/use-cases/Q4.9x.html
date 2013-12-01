@@ -1,0 +1,56 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.9)
+ ::  List the number of items auctioned each month in 1999
+ ::  for which data is available, ordered by month. 
+ :: __________________________________________________________
+  :)
+
+<result>
+  {
+    let $end_dates := doc("items.xml")//item_tuple/end_date
+    for $m in distinct-values(for $e in $end_dates 
+                              return month-from-date($e))
+    let $item := doc("items.xml")
+        //item_tuple[year-from-date(end_date) = 1999 
+                     and month-from-date(end_date) = $m]
+    order by $m
+    return
+        <monthly_result>
+            <month>{ $m }</month>
+            <item_count>{ count($item) }</item_count>
+        </monthly_result>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.9.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

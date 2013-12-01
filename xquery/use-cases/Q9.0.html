@@ -1,0 +1,35 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="18" cols="80">
+
+<database>
+{
+doc("ipo.xml")/*,
+doc("zips.xml")/*,
+doc("postals.xml")/*,
+doc("deadbeats.xml")/*
+}
+</database>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="button" value="Submit Query" onClick="submit()"/>
+  </td>
+</tr>
+</table>
+</form>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q7.6)
+ ::  Select the closing time elements of all AnyZone auctions
+ ::  currently monitored.  
+ :: __________________________________________________________
+  :)
+declare namespace ma = "http://www.example.com/AuctionWatch";
+declare namespace anyzone = "http://www.example.com/auctioneers#anyzone";
+
+<Q6 xmlns:ma="http://www.example.com/AuctionWatch">
+  {
+    doc("auction.xml")//ma:Auction[@anyzone:ID]/ma:Schedule/ma:Close
+  }
+</Q6>
+
+    </textarea>
+  </td>
+</tr>
+</table></td/</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q7.6.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
