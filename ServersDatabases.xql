@@ -5,7 +5,7 @@ xquery version "1.0";
 import module namespace httpclient="http://exist-db.org/xquery/httpclient"
     at "java:org.exist.xquery.modules.httpclient.HTTPClientModule";
 
-(: 
+(:
   Get the URL of the XML file that holds information about the servers and databases.
 :)
 declare variable $servers-databases-xml := util:system-property("cfm.example.servers-databases-xml");
@@ -14,14 +14,14 @@ declare variable $servers-databases-xml := util:system-property("cfm.example.ser
 
 let $title := "PMC Servers and Databases"
 let $sd := doc($servers-databases-xml)
-return 
+return
   <html>
     <head>
       <title>{$title}</title>
     </head>
     <body>
 
-      <h2 id='servers'>Servers</h2>
+      <h3 id='servers'>Servers</h3>
       <table border='1'>
         <tr>
           <th>Server</th>
@@ -33,12 +33,12 @@ return
       {
         for $s in $sd//Server
         let $a := string($s/@aliases)
-        let $aliases := 
-            if (string-length($a) = 0) 
+        let $aliases :=
+            if (string-length($a) = 0)
                 then ""
                 else concat(" (", string-join(tokenize($s/@aliases, "\s"), ", "), ")")
-        
-        return 
+
+        return
           <tr>
             <td>{string($s/@name)}</td>
             <td>{$s/@mssql-version}</td>
@@ -57,19 +57,19 @@ return
           -->
           </tr>
       }</table>
-      
-      <h2 id='aliases'>Server aliases</h2>
+
+      <h3 id='aliases'>Server aliases</h3>
       <ul>{
         for $alias in distinct-values(
             for $s in $sd//Server
             return tokenize($s/@aliases, "\s")
         )
         order by $alias
-        return 
+        return
           <li>{$alias} - {$sd//Server[contains(@aliases, $alias)]/@name/string()}</li>
       }</ul>
 
-      <h2 id='databases'>Databases</h2>
+      <h3 id='databases'>Databases</h3>
       <table border='1'>
         <tr>
           <th>Database</th>
@@ -81,7 +81,7 @@ return
               return tokenize($s/@databases, "\s")
           )
           order by upper-case($db)
-          return 
+          return
             <tr>
               <td>{$db}</td>
               <td>{
