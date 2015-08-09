@@ -1,6 +1,7 @@
 apes = ["Homo sapiens", "Pan troglodytes", "Gorilla gorilla", "Pan paniscus", 
         "Gorilla beringei", ]
 conserved_sites = [24, 56, 132]
+len(conserved_sites)             #=> 3
 
 # Print out an array slice: the first two elements:
 print(apes[0:2])
