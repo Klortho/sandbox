@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q1.1)
+ ::  List books published by Addison-Wesley after 1991
+ ::  including their year and title.
+ :: __________________________________________________________
+  :)
+<bib>
+ {
+  for $b in doc("http://bstore1.example.com/bib.xml")/bib/book
+  where $b/publisher = "Addison-Wesley" and $b/@year > 1991
+  return
+    <book year="{ $b/@year }">
+     { $b/title }
+    </book>
+ }
+</bib>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q1.1.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

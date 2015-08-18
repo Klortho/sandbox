@@ -1,0 +1,73 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.9)
+ ::  List the number of items auctioned each month in 1999
+ ::  for which data is available, ordered by month. 
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q4.9 result</td>
+</tr>
+<tr>
+  <th>Month</th>
+  <th>Auction count</th>
+</tr>
+{
+  let $months := ("January","February","March","April",
+                  "May","June","July", "August", "September",
+                  "October", "November","December")
+
+  for $r at $i in (
+
+    let $end_dates := doc("items.xml")//item_tuple/end_date
+    for $m in distinct-values(for $e in $end_dates 
+                              return month-from-date($e))
+    let $item := doc("items.xml")
+        //item_tuple[year-from-date(end_date) = 1999 
+                     and month-from-date(end_date) = $m]
+    order by $m
+    return
+        <monthly_result>
+            <month>{ $m }</month>
+            <item_count>{ count($item) }</item_count>
+        </monthly_result>
+  )
+  return
+    <tr bgcolor="{ if ($i mod 2) then "#eeeeff" else "#ffffff" }">
+      <td>{ $months [xs:integer($r/month)] }</td>
+      <td align="center">{ data($r/item_count) }</td>
+    </tr>
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q4.9x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

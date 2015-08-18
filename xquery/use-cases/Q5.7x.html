@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q5.7)
+ ::  Locate the initial letter of the initial paragraph of all
+ ::  introductions (the first character in the content [character
+ ::  content as well as element content] of the first "para"
+ ::  element contained in an "intro" element).    
+ :: __________________________________________________________
+  :)
+<result>
+  {
+    for $i in doc("sgml.xml")//intro/para[1]
+    return
+        <first_letter>{ substring(string($i), 1, 1) }</first_letter>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q5.7.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

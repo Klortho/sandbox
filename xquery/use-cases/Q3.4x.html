@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q3.4)
+ ::  In Report1, find "Procedure" sections where no Anesthesia
+ ::  element occurs before the first Incision.
+ ::  (There should be none!)
+ :: __________________________________________________________
+  :)
+
+<result>
+{ 
+  for $p in doc("report1.xml")//section[section.title = "Procedure"]
+  where not(some $a in $p//anesthesia satisfies
+        $a << ($p//incision)[1] )
+  return $p
+}
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q3.4.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

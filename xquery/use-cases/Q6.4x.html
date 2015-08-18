@@ -1,0 +1,54 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q6.4)
+ ::  Find news items where a company and one of its partners is
+ ::  mentioned in the same news item and the news item is not
+ ::  authored by the company itself.   
+ :: __________________________________________________________
+  :)
+declare function local:partners($company as xs:string) as element()*
+{
+    let $c := doc("company-data.xml")//company[name = $company]
+    return $c//partner
+};
+
+  for $item in doc("string.xml")//news_item,
+    $c in doc("company-data.xml")//company
+  let $partners := local:partners($c/name)
+  where contains(string($item), $c/name)
+    and (some $p in $partners satisfies
+      contains(string($item), $p) and $item/news_agent != $c/name)
+  return
+    $item
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q6.4.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

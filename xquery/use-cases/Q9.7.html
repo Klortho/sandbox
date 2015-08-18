@@ -1,0 +1,67 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (9.7)
+ ::  Write a function that returns the text of a comment. Call
+ ::  this function for each shipping comment found in an item
+ ::  shipped to Helen Zoe on the date 1999-12-01.
+ :: _________________________________________________________
+  :)
+import schema namespace ipo="http://www.example.com/IPO" at "ipo.xsd";
+
+declare function local:comment-text($c as schema-element(ipo:comment))
+  as xs:string
+{
+    xs:string( $c )
+};
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q9.7: Shipping comment</td>
+</tr>
+<tr><td>
+  <ul>
+  {
+  for $r in (
+    for $p in doc("ipo.xml")//element(ipo:purchaseOrder),
+      $t in local:comment-text( $p//ipo:shipComment )
+    where $p/shipTo/name="Helen Zoe"
+      and $p/@orderDate = xs:date("1999-12-01")
+    return $t
+  )
+  return
+    <li>{ $r }</li>
+  }
+  </ul>
+</td></tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q9.7x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

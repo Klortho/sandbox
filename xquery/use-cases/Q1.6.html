@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q1.6)
+ ::  For each book that has at least one author, list the title
+ ::  and first two authors, and an empty "et-al" element if the
+ ::  book has additional authors.
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">  Use case Q1.6:  author lists</td>
+</tr>
+<tr>
+   <th align="left" width="40%">Title</th>
+   <th align="left">Author(s)</th>
+</tr>
+{
+
+  for $r at $i in (
+
+  for $b in doc("http://bstore1.example.com/bib.xml")//book
+    where count($b/author) > 0
+    return
+        <book>
+            { $b/title }
+            {
+                for $a in $b/author[position()<=2]  
+                return $a
+            }
+            {
+                if (count($b/author) > 2)
+                 then <et-al/>
+                 else ()
+            }
+        </book>
+  )
+  return
+    <tr bgcolor="{ if ($i mod 2) then "#eeeeff" else "#ffffff" }">
+      <td>{ data($r/title) }</td>
+      <td>{
+            for $a in $r/author
+            return
+              (data($a/last),"  ")
+	  }
+	  {
+	    if (exists($r/et-al))
+            then "  et. al."
+	    else ()
+	  }
+      </td>
+    </tr>
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q1.6x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+

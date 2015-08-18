@@ -1,0 +1,58 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q5.3)
+ ::  Locate all paragraphs in the introduction of a section that
+ ::  is in a chapter that has no introduction (all "para" elements
+ ::  directly contained within an "intro" element directly contained
+ ::  in a "section" element directly contained in a "chapter" element.
+ ::  The "chapter" element must not directly contain an "intro" element). 
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q5.3:  para within section intro, no chapter intro</td>
+</tr>
+<tr><td><ul>
+{ 
+  for $r in (
+
+    for $c in doc("sgml.xml")//chapter
+    where empty($c/intro)
+    return $c/section/intro/para
+  )
+  return
+    <li>{ $r }</li>
+}
+</ul></td></tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q5.3x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

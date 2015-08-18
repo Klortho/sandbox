@@ -1,0 +1,54 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.1)
+ ::  List the item number and description of all bicycles that
+ ::  currently have an auction in progress, ordered by item number. 
+ :: __________________________________________________________
+  :)
+<result>
+  {
+    let $currentDate := xs:date("1999-01-31")    (: Per Use Cases Note :)
+    for $i in doc("items.xml")//item_tuple
+    where $i/start_date <= $currentDate     (: current-date() for actual current date :)
+      and $i/end_date >= $currentDate 
+      and contains($i/description, "Bicycle")
+    order by $i/itemno
+    return
+        <item_tuple>
+            { $i/itemno }
+            { $i/description }
+        </item_tuple>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.1.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

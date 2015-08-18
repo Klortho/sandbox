@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q7.5)
+ ::  Select all records that have a remark in German. 
+ :: __________________________________________________________
+  :)
+declare namespace music = "http://www.example.org/music/records";
+
+<Q5 xmlns:music="http://www.example.org/music/records">
+  {
+     doc("auction.xml")//music:record[music:remark/@xml:lang = "de"]
+  }
+</Q5>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q7.5.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

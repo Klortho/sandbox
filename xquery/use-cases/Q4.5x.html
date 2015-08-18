@@ -1,0 +1,67 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+
+(:  __________________________________________________________
+ ::  (Q4.5)
+ ::  For bicycle(s) offered by Tom Jones that have received a bid,
+ ::  list the item number, description, highest bid, and name of
+ ::  the highest bidder, ordered by item number.
+ :: __________________________________________________________
+  :)
+
+<result>
+  {
+    for $seller in doc("users.xml")//user_tuple,
+        $buyer in  doc("users.xml")//user_tuple,
+        $item in  doc("items.xml")//item_tuple,
+        $highbid in  doc("bids.xml")//bid_tuple
+    where $seller/name = "Tom Jones"
+      and $seller/userid  = $item/offered_by
+      and contains($item/description , "Bicycle")
+      and $item/itemno  = $highbid/itemno
+      and $highbid/userid  = $buyer/userid
+      and $highbid/bid = max(
+                              doc("bids.xml")//bid_tuple
+                                [itemno = $item/itemno]/bid
+                         )
+    order by ($item/itemno)
+    return
+        <jones_bike>
+            { $item/itemno }
+            { $item/description }
+            <high_bid>{ $highbid/bid }</high_bid>
+            <high_bidder>{ $buyer/name }</high_bidder>
+        </jones_bike>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.5.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

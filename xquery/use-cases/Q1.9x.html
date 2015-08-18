@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q1.9)
+ ::  In the document "books.xml", find all section or chapter
+ ::  titles that contain the word "XML", regardless of the level
+ ::  of nesting.
+ :: __________________________________________________________
+  :)
+<results>
+  {
+    for $t in doc("books.xml")//(chapter | section)/title
+    where contains($t/text(), "XML")
+    return $t
+  }
+</results>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q1.9.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+

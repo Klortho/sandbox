@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q5.10)
+ ::  Locate the closest title preceding the cross-reference
+ ::  ("xref") element whose "xrefid" attribute is "top4" (the
+ ::  "title" element that would be touched last before this
+ ::  "xref" element when touching each element in document order).
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q5.10:  title preceding xref topic</td>
+</tr>
+<tr><td>
+<ul>
+{
+  for $r in (
+
+    let $x := doc("sgml.xml")//xref[@xrefid = "top4"],
+        $t := doc("sgml.xml")//title[. << $x]
+    return $t[last()]
+  )
+  return
+    <li>{ data($r) }</li>
+}
+</ul>
+</td></tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q5.10x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

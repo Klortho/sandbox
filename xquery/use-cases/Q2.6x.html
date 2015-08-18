@@ -1,0 +1,63 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q2.6)
+ ::  Make a nested list of the section elements in Book1,
+ ::  preserving their original attributes and hierarchy.  Inside
+ ::  each section element, include the title of the section and
+ ::  an element that includes the number of figures
+ ::  immediately contained in the section. 
+ :: __________________________________________________________
+  :)
+declare function local:section-summary($book-or-section as element()*)
+  as element()*
+{
+  for $section in $book-or-section
+  return
+    <section>
+       { $section/@* }
+       { $section/title }       
+       <figcount>         
+         { count($section/figure) }
+       </figcount>                
+       { local:section-summary($section/section) }                      
+    </section>
+};
+
+<toc>
+  {
+    for $s in doc("book.xml")/book/section
+    return local:section-summary($s)
+  }
+</toc>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q2.6.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

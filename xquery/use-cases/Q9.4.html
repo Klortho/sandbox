@@ -1,0 +1,74 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (9.4)
+ ::  Return purchase orders with an erroneous postal code or
+ ::  zip code (depending on whether it is a UK Address or a
+ ::  US Address).
+ :: __________________________________________________________
+  :)
+import schema namespace ipo="http://www.example.com/IPO" at "ipo.xsd";
+import schema namespace pst="http://www.example.com/postals" at "postals.xsd";
+import schema namespace zips="http://www.example.com/zips" at "zips.xsd";
+
+import module namespace zok="http://www.example.com/xq/zips" at "/use-cases/Q9.2-lib.xqy";
+import module namespace pok="http://www.example.com/xq/postals" at "/use-cases/Q9.3-lib.xqy";
+
+declare function local:address-ok($a as element(*, ipo:Address))
+ as xs:boolean
+{
+  typeswitch ($a)
+      case $zip as element(*, ipo:USAddress)
+           return zok:zip-ok($zip)
+      case $postal as element(*, ipo:UKAddress )
+           return pok:postal-ok($postal) 
+      default return false()
+};
+
+<table width="100%">
+<tr>
+  <td class="title">  Use case Q9.4 POs with erroneous postal codes</td>
+</tr>
+<tr><td>
+  <ul>
+  {
+    for $r in (
+let $shipTo := doc("ipo.xml")/element(ipo:purchaseOrder)/shipTo
+let $billTo := doc("ipo.xml")/element(ipo:purchaseOrder)/billTo
+return local:address-ok($shipTo) and local:address-ok($billTo)
+    )
+    return <li>{ $r }</li>
+  }
+  </ul>
+</td></tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q9.4x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

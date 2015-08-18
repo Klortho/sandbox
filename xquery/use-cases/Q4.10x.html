@@ -1,0 +1,55 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.10)
+ ::  For each item that has received a bid, list the item
+ ::  number, the highest bid, and the name of the highest bidder,
+ ::  ordered by item number. 
+ :: __________________________________________________________
+  :)
+<result>
+ {
+    for $highbid in doc("bids.xml")//bid_tuple,
+        $user in doc("users.xml")//user_tuple
+    where $user/userid = $highbid/userid 
+      and $highbid/bid = max(doc("bids.xml")//bid_tuple[itemno=$highbid/itemno]/bid)
+    order by $highbid/itemno
+    return
+        <high_bid>
+            { $highbid/itemno }
+            { $highbid/bid }
+            <bidder>{ $user/name/text() }</bidder>
+        </high_bid>
+  }
+</result>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.10.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

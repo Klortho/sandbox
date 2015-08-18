@@ -1,0 +1,288 @@
+/* Copyright (c) 2004-2008 Mark Logic Corporation. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * The use of the Apache License does not indicate that this project is
+ * affiliated with the Apache Software Foundation.
+ */
+@import "local.css";
+
+body
+{
+  color: black;
+  background-color: white;
+  font-family: sans-serif;
+  font-size: small;
+  margin: 1px 1px 1px 1px;
+}
+
+table
+{
+  width: 100%;
+}
+
+td
+{
+  vertical-align: top;
+}
+
+textarea
+{
+  /* weird gecko hack */
+  font-family: monospace, -moz-fixed !important;
+}
+
+ol
+{
+  cursor: pointer;
+}
+
+select
+{
+  width: 12em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+
+input[type = "button"]
+{
+  font-family: sans-serif;
+  margin-left: 0.5em;
+  margin-left: 0.5em;
+}
+
+#cq-textarea-status
+{
+  font-weight: normal;
+  font-size: smaller;
+}
+
+.resizable-e,.resizable-s,.resizable-w,.resizable-n
+{
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+.resizable-e { cursor: e-resize; }
+.resizable-s { cursor: s-resize; }
+.resizable-w { cursor: w-resize; }
+.resizable-n { cursor: n-resize; }
+
+.accent-color { background-color: #FFCC33; }
+
+.head1
+{
+  font-size: larger;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+.head2
+{
+  font-size: larger;
+  margin-bottom: 0.2em;
+}
+
+.buffer-tab, .buffer-tab-active, .query-history, .profiler-report
+{
+  border: 1px solid black;
+}
+
+.buffer-tab, .buffer-tab-active
+{
+  cursor: pointer;
+  font-size: larger;
+  font-weight: bold;
+  margin: 0 0.5em 0 0.5em;
+  padding: 0 0.5em 0 0.5em;
+  float: left;
+}
+
+.buffer-tab
+{
+  color: grey;
+}
+
+.buffer-history-wrapper
+{
+  overflow: auto;
+  /* initial value only:
+   * JavaScript will match the height of the query-buffers area.
+   */
+  height: 2em;
+}
+
+/* clipping doesn't work quite how I'd like it to:
+ * long lines that contain no breakable characters
+ * tend to disappear entirely!
+ *
+ */
+.bufferlabel
+{
+  overflow: hidden !important;
+  /*text-overflow: clip !important;*/
+  /*
+   * I want to use 'white-space: nowrap',
+   * so gecko won't swallow long lines.
+   * Unfortunately, this broke in FireFox 3.0,
+   * but repeated declarations seem to do the job.
+   * Browsers should use the last supported value.
+   */
+  white-space: pre; /* CSS2 */
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3 and 2.1 */
+
+  line-height: 1.5;
+  height: 1.5em;
+  cursor: pointer;
+
+  font-size: smaller;
+}
+
+/* IE6 hack: '* html' makes this invisible to non-IE browsers. */
+* html .bufferlabel
+{
+  word-break: break-all !important;
+  word-wrap: break-word !important;
+  white-space: pre !important;
+}
+
+.bufferlabel-active
+{
+  overflow: hidden !important;
+/*  text-overflow: clip !important; */
+/*
+ * no nowrap here!
+ * two lines high, instead:
+ * we count on finding a breaking character by the end of line 2...
+ */
+  white-space: -moz-pre-wrap;
+  /* CSS 2.1: white-space: pre-wrap; */
+
+  line-height: 1.5;
+  height: 3em;
+
+  font-size: smaller;
+}
+
+/* for display of stack traces */
+.code
+{
+  font-family: monospace, -moz-fixed !important;
+}
+
+.delete-widget
+{
+  color: red;
+  cursor: crosshair;
+}
+
+.disabled
+{
+  color: grey;
+}
+
+/* for display of stack traces */
+.error
+{
+  color: red;
+  font-weight: bold;
+}
+
+.expression
+{
+  width: 80%
+}
+
+.hidden
+{
+  overflow: hidden !important;
+  display: none;
+  height: 0px;
+}
+
+.instruction
+{
+  font-weight: normal;
+
+  font-style: italic;
+  margin-right: .5em;
+}
+
+.caption, .row-title
+{
+  font-weight: bold;
+}
+
+.numeric
+{
+  text-align: right;
+  white-space: pre;
+}
+
+.version
+{
+  font-weight: normal;
+  font-style: italic;
+  text-align: right;
+}
+
+.status
+{
+  width: 7em;
+}
+
+.resizable-active
+{
+}
+
+.resizable-wrapper
+{
+}
+
+.resizable-handle
+{
+}
+
+.pagination-area
+{
+  align: center;
+  width: 95%;
+  text-align: center;
+}
+
+.pagination-label
+{
+}
+
+.pagination-scroller
+{
+  font-size: 120%;
+  margin: 0.4em;
+}
+
+.pagination-current-page-label
+{
+  margin: 0.4em;
+  font-weight: bold;
+}
+
+.pagination-link
+{
+  margin: 0.4em;
+}
+
+/* end cq.css */

@@ -1,0 +1,52 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q1.8)
+ ::  Find books in which the name of some element ends with the
+ ::  string "or" and the same element contains the string "Suciu"
+ ::  somewhere in its content. For each such book, return the title
+ ::  and the qualifying element.
+ :: __________________________________________________________
+  :)
+for $b in doc("http://bstore1.example.com/bib.xml")//book
+let $e := $b/*[contains(string(.), "Suciu") 
+               and ends-with(local-name(.), "or")]
+where exists($e)
+return
+    <book>
+        { $b/title }
+        { $e }
+    </book>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q1.8.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+

@@ -1,0 +1,55 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q2.1)
+ ::  Prepare a (nested) table of contents for Book1, listing all the
+ ::  sections and their titles. Preserve the original attributes of
+ ::  each <section> element, if any.
+ :: __________________________________________________________
+  :)
+declare function local:toc($book-or-section as element()) as element()*
+{
+    for $section in $book-or-section/section
+    return
+      <section>
+         { $section/@* , $section/title , local:toc($section) }                 
+      </section>
+};
+
+<toc>
+   {
+     for $s in doc("book.xml")/book
+     return local:toc($s)
+   }
+</toc>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q2.1.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

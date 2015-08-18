@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q7.8)
+ ::  Select all traders (either seller or high bidder) without
+ ::  negative comments  
+ :: __________________________________________________________
+  :)
+declare namespace ma = "http://www.example.com/AuctionWatch";
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q7.8:  Traders without negative comments</td>
+</tr>
+<tr><td>
+  <ul>
+  {
+    for $r in (
+
+    for $s in doc("auction.xml")//ma:Trading_Partners/(ma:Seller | ma:High_Bidder)
+    where $s/*:NegativeComments = 0
+    return $s
+    )
+    return
+      <li>{ $r }</li>
+  }
+  </ul>
+</td></tr>
+</table>
+
+
+    </textarea>
+  </td>
+</tr>
+</table></td/</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q7.8x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q5.9)
+ ::  Locate all the topics referenced by a cross-reference anywhere
+ ::  in the report (all the "topic" elements whose "topicid" attribute
+ ::  value is the same as an "xrefid" attribute value of any "xref"
+ ::  element).
+ :: __________________________________________________________
+  :)
+<table width="100%">
+<tr>
+  <td class="title" colspan="4">  Use case Q5.9:  xref topics</td>
+</tr>
+<tr><td>
+<ul>
+  { 
+    for $r in (
+
+    for $id in doc("sgml.xml")//xref/@xrefid
+    return doc("sgml.xml")//topic[@topicid = $id]
+    )
+    return
+      <li>
+        <h4>{ $r/title/text() }</h4>
+        { $r }
+      </li>
+  }
+</ul>
+</td></tr>
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q5.9x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

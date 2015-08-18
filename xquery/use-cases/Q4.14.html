@@ -1,0 +1,68 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.14)
+ ::  List item numbers and average bids for items that have
+ ::  received three or more bids, in descending order by average
+ ::  bid.
+ :: __________________________________________________________
+  :)
+<table width="50%">
+<tr>
+  <td class="title" colspan="4">  Use case Q4.14:  popular items</td>
+</tr>
+<tr>
+  <th>Itemno</th>
+  <th>Average bid</th>
+</tr>
+{
+  for $r at $i in (
+
+    for $i in distinct-values(doc("bids.xml")//itemno)
+    let $b := doc("bids.xml")//bid_tuple[itemno = $i]
+    let $avgbid := avg($b/bid)
+    where count($b) >= 3
+    order by $avgbid descending
+    return
+        <popular_item>
+            <itemno>{ $i }</itemno>
+            <avgbid>{ $avgbid }</avgbid>
+        </popular_item>
+  )
+  return
+    <tr bgcolor="{ if ($i mod 2) then "#eeeeff" else "#ffffff" }">
+      <td>{ data($r/itemno) }</td>
+      <td>{ data($r/avgbid) }</td>
+    </tr>
+}
+</table>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width="36%">
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XHTML (<a href="Q4.14x.html">Switch to XML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

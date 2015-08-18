@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q7.4)
+ ::  List the target URI's of all XLinks in the document. 
+ :: __________________________________________________________
+  :)
+declare namespace xlink = "http://www.w3.org/1999/xlink";
+
+<Q4 xmlns:xlink="http://www.w3.org/1999/xlink">
+  {
+    for $hr in doc("auction.xml")//@xlink:href
+    return <ns>{ $hr }</ns>
+  }
+</Q4>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q7.4.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

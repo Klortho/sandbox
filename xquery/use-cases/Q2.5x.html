@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q2.5)
+ ::  Make a flat list of the section elements in Book1. In place of
+ ::  its original attributes, each section element should have two
+ ::  attributes, containing the title of the section and the number
+ ::  of figures immediately contained in the section. 
+ :: __________________________________________________________
+  :)
+<section_list>
+  {
+  for $s in doc("book.xml")//section
+  let $f := $s/figure
+  return
+    <section title="{ $s/title/text() }" figcount="{ count($f) }"/>
+  }
+</section_list>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q2.5.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>

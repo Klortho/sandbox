@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+<form target="resultFrame"
+      method="POST"
+      action="eval2.xqy">
+
+<table width="100%">
+<tr>
+  <td class="title" colspan="2">XQuery Source</td>
+</tr>
+<tr>
+  <td valign="top" colspan="2">
+    <textarea name="queryInput" rows="16" cols="80">
+(:  __________________________________________________________
+ ::  (Q4.17)
+ ::  List the names of users, if any, who have bid on every item.
+ :: __________________________________________________________
+  :)
+<frequent_bidder>
+  {
+    for $u in doc("users.xml")//user_tuple
+    where 
+      every $item in doc("items.xml")//item_tuple satisfies 
+        some $b in doc("bids.xml")//bid_tuple satisfies 
+          ($item/itemno = $b/itemno and $u/userid = $b/userid)
+    return
+        $u/name
+  }
+</frequent_bidder>
+
+    </textarea>
+  </td>
+</tr>
+<tr>
+  <td width=36%>
+    <input type="submit" value="Submit"/>
+  </td>
+  <td class="note">
+    Query generates XML
+    (<a href="Q4.17.html">Switch to XHTML</a>)
+  </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
