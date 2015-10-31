@@ -1,0 +1,28 @@
+{
+  "name": "my-project",
+  "version": "0.0.1",
+  "description": "Test javascript project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Klortho/sandbox.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Chris Maloney <voldrani@gmail.com>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/Klortho/sandbox/issues"
+  },
+  "homepage": "https://github.com/Klortho/sandbox#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2"
+  }
+}
