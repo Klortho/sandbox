@@ -3,6 +3,7 @@
 if (typeof d3 !== "undefined")
 {
   (function() {
+    /**/
 
     Fleegle = function(opts) {
       var self = this;

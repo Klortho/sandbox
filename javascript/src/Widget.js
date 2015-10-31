@@ -32,7 +32,7 @@ if (typeof Fleegle != "undefined") {
       }
       var subclass = subclasses[spec.type];
       if (!subclass) {
-        throw new Error("Invalid widget spec, widget type not "
+        throw new Error("Invalid widget spec, widget type not " +
           "recognized: " + spec.type);
       }
 
@@ -50,7 +50,6 @@ if (typeof Fleegle != "undefined") {
       initialize: function() {},
       is_green: function() { return this.green != null; },
     };
-
   })();
 }
 
