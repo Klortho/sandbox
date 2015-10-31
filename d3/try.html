@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script type='text/javascript' src='lib/es6-promise.js'></script>
+  </head>
+  <body>
+    <script>
+      var t = 1;
+      var getp = function(my_t) {
+          return function() {
+              return new Promise(function(resolve, reject) {
+                  console.log("in promise, my_t = " + my_t);
+                  resolve();
+              });
+          }
+      }(t);
+
+      t = 2;
+      getp().then(function() { console.log("done"); });
+    </script>    
+  </body>
+</html>
+
