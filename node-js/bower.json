@@ -1,0 +1,29 @@
+{
+  "name": "my-project",
+  "homepage": "https://github.com/Klortho/sandbox",
+  "authors": [
+    "Chris Maloney <voldrani@gmail.com>"
+  ],
+  "description": "My first bower project",
+  "main": "main.js",
+  "moduleType": [],
+  "keywords": [
+    "d3",
+    "tree"
+  ],
+  "license": "WTFPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.8.3",
+    "jquery": "~2.1.4"
+  },
+  "resolutions": {
+    "jquery": "~2.1.4"
+  }
+}
