@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="lib/d3.js"></script>
+  </head>
+  <body>
+    <h1>Zebra stripe a table</h1>
+    <table>
+      <tr>
+        <td>one</td>
+        <td>two</td>
+      </tr>
+      <tr>
+        <td>three</td>
+        <td>four</td>
+      </tr>
+      <tr>
+        <td>five</td>
+        <td>six</td>
+      </tr>
+      <tr>
+        <td>seven</td>
+        <td>eight</td>
+      </tr>
+    </table>
+
+    <script>
+      d3.selectAll('tr')
+        // arguments are by convention `d` - the data item; and `i` - the index
+        .style('background-color', function(d, i) {
+          return i % 2 ? "#DDD" : "white";
+        });
+    </script>
+
+  </body>
+</html>

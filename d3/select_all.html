@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="lib/d3.js"></script>
+  </head>
+  <body>
+    <h1>Style a collection of nodes</h1>
+    <p>
+      d3.select() only selects one node. To select all of the matching
+      nodes, use d3.selectAll().
+    </p>
+    <div class='section'>
+      first
+    </div>
+    <div class='section'>
+      second
+    </div>
+
+    <script>
+      d3.selectAll('.section')
+        .style('color', '#f0f'); 
+    </script>
+
+  </body>
+</html>

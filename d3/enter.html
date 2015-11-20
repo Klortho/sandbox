@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="lib/d3.js"></script>
+  </head>
+  <body>
+    <h1>Enter selection</h1>
+
+    <p>This list starts out with only two items. New items are colored
+      green.</p>
+
+    <ul>
+      <li>c1</li>
+      <li>c2</li>
+    </ul>
+
+    <script>
+
+      // If there are more data items than nodes, 
+      // the extras are available by using the `enter` selection
+      var names = ['Pike', 'Kirk', 'Picard', 'Sisko', 'Janeway', 'Archer'];
+
+      // Here's a gotcha: you have to create the selection by first using
+      // select() on the container, so that the nodes of the enter selection
+      // have a context.
+      var captains = d3.select('ul')
+                       .selectAll('li').data(names);
+
+      // Set the text for the nodes that already exist:
+      captains
+        .text(function(d, i) {
+          return 'Captain #' + (i + 1) + ': ' + d;
+        });
+
+      // Use the enter selection to add new nodes.
+      // See https://github.com/mbostock/d3/wiki/Selections#enter
+      captains.enter().append('li')
+        .style('color', 'green')
+        .text(function(d, i) {
+          return 'Captain #' + (i + 1) + ': ' + d;
+      });
+
+    </script>
+
+  </body>
+</html>
+
+  

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="lib/d3.js"></script>
+  </head>
+  <body>
+    <h1>Create a new table cell in each row</h1>
+    <table>
+      <tr>
+        <td>one</td>
+        <td>two</td>
+      </tr>
+      <tr>
+        <td>three</td>
+        <td>four</td>
+      </tr>
+      <tr>
+        <td>five</td>
+        <td>six</td>
+      </tr>
+      <tr>
+        <td>seven</td>
+        <td>eight</td>
+      </tr>
+    </table>
+
+    <script>
+      d3.selectAll('tr')
+        .append('td')
+        .text('✓');
+    </script>
+
+  </body>
+</html>
+

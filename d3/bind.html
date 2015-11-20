@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="lib/d3.js"></script>
+  </head>
+  <body>
+    <h1>Binding data to a selection</h1>
+
+    <ul>
+      <li>fleegle</li>
+      <li>bingo</li>
+      <li>drooper</li>
+      <li>snork</li>
+    </ul>
+
+    <script>
+
+      // Binding data to a selection
+      var letters = ['a', 'b', 'c', 'd'];
+      var items = d3.selectAll('li').data(letters);
+
+      // Set the new text content of each item in the selection
+      items.text(function(d, i) {
+        // `this` is the DOM node; d is the data; i is the index
+        return i + ": " + this.textContent + ": " + d;
+      });
+
+      // Get the array back out: 
+      console.log("letters are " + items.data());
+
+    </script>
+
+  </body>
+</html>
