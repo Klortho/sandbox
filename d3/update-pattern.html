@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script type="text/javascript" src="lib/d3.js"></script>
+  </head>
+  <body>
+    <h1>Update pattern</h1>
+
+    <p>See also this block:
+      <a href='http://bl.ocks.org/mbostock/3808218'>General update 
+        pattern, I</a>.</p>
+
+    <button>Click me</button>
+
+    <p>Here's a dynamic list of numbers.</p>
+
+    <div id='container'></div>
+
+
+    <script type="text/javascript">
+      var duration = 1000;
+
+      // Here's the data that generates the list
+      var numbers = [
+        { n: 0, 
+          label: "zero",
+          color: "#7FFF00" },
+        { n: 1,
+          label: "one",
+          color: "green" },
+        { n: 2,
+          label: "two",
+          color: "blue" },
+        { n: 3,
+          label: "three",
+          color: "red" },
+        { n: 4,
+          label: "four",
+          color: "orange" },
+        { n: 5,
+          label: "five",
+          color: "black" },
+        { n: 6,
+          label: "six",
+          color: "brown" },
+        { n: 7,
+          label: "seven",
+          color: "#8A2BE2" },
+      ];
+
+      var width = 200,
+          height = 300;
+      var svg = d3.select("#container").append("svg")
+        .attr({
+          "width": width,
+          "height": height,
+        });
+
+
+      // Draw the initial list
+      draw();
+
+      function draw() {
+
+        // Generate a new random subset of the data list
+        var number_list = random_list();
+        console.log("number_list is %o", number_list);
+
+        var s_items = svg.selectAll("g")
+          .data(number_list, function(d) { 
+            return d.label; 
+          });
+
+        // Function to compute the actual position (translation) of an 
+        // item based on its position in the list
+        function translation(d, i) {
+          return "translate(30, " + ((i+1)*25) + ")";
+        }
+
+        // UPDATE
+        // Transition the existing elements to new locations
+        s_items.transition().duration(duration)
+          .attr("transform", translation);
+  
+
+        // ENTER
+        // Create new elements as needed.
+        s_items.enter().append("g")
+          .attr("transform", translation)
+          .append("text")
+            .text(function(d) { return d.label; })
+            .style({
+              "fill": function(d) { return d.color; },
+              "opacity": 0,
+            })
+            .transition().duration(duration)
+              .style("opacity", 1)
+        ;
+
+        // ENTER + UPDATE
+        // Appending to the enter selection expands the update selection to include
+        // entering elements; so, operations on the update selection after appending 
+        // to the enter selection will apply to both entering and updating nodes.
+
+
+        // EXIT
+        // Remove old elements as needed.
+        s_items.exit()
+          .transition().duration(duration)
+            .style("opacity", 0)
+            .remove();
+
+
+
+
+      }
+
+      // Create a new random list of the numbers
+      function random_list() {
+        return d3.shuffle(numbers)
+          .slice(0, Math.floor(Math.random() * 8) + 1)
+          .sort(function(a, b) { return a.n > b.n; });
+      }
+
+      // Click handler for the button
+      d3.select('button').on('click', draw);
+
+    </script>
+  </body>
+</html>

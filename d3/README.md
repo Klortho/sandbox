@@ -41,7 +41,6 @@ tutorial](http://code.hazzens.com/d3tut/lesson_1.html).
 [bar.html](bar.html)
 
 
-
 ***Animation***
 
 [animation1.html](animation1.html); uses [animation1.js](animation1.js)
@@ -51,4 +50,12 @@ tutorial](http://code.hazzens.com/d3tut/lesson_1.html).
 
 [animation-promises.html](animation-promises.html); uses
 [animation-promises.js](animation-promises.js)
+
+
+***Update pattern***
+
+[update-pattern.html](update-pattern.html)
+
+See also this block:
+[General update pattern, I](http://bl.ocks.org/mbostock/3808218)
 
