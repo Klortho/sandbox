@@ -1,7 +1,8 @@
 {
-  "name": "my-project",
+  "name": "cfm-javascript-sandbox",
   "version": "0.0.1",
-  "description": "Test javascript project",
+  "description": "Chris Maloney's javascript sandbox",
+  "homepage": "https://github.com/Klortho/sandbox",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

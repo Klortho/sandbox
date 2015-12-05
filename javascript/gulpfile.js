@@ -1,21 +1,21 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var sass = require('gulp-ruby-sass');
-var del = require('del');
+var concat = require('gulp-concat'),
+    del = require('del'),
+    gulp = require('gulp'),    
+    rename = require('gulp-rename'),
+    sass = require('gulp-ruby-sass'),
+    uglify = require('gulp-uglify');
 
-var src = 'src';
-var build = 'build';
-
-var js_src = src + '/*.js';
-var sass_src = src + '/*.scss';
+var name = 'fleegle.js',
+    src = 'src',
+    build = 'build',
+    js_src = src + '/*.js',
+    sass_src = src + '/*.scss';
 
 gulp.task('default', ['clean', 'js', 'sass']);
 
 gulp.task('js', function() {
   return gulp.src(js_src)
-    .pipe(concat('fleegle.js'))
+    .pipe(concat(name))
     .pipe(gulp.dest(build))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
