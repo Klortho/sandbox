@@ -1,0 +1,25 @@
+// Hello world
+task hello1 {
+    doLast {
+        println 'Hello world!'
+    }
+}
+
+// Same thing, shorthand
+task hello2 << {
+    println 'Hello world!'
+}
+
+// Tasks can contain arbitrary groovy code
+task upper << {
+    String someString = 'mY_nAmE'
+    println "Original: " + someString 
+    println "Upper case: " + someString.toUpperCase()
+}
+
+// Task that depends on another task
+
+task intro(dependsOn: hello2) << {
+    println "I'm Adam"
+}
+
