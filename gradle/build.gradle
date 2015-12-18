@@ -23,3 +23,17 @@ task intro(dependsOn: hello2) << {
     println "I'm Adam"
 }
 
+// You can dynamically create tasks. This creates task0 - task3,
+// and then dynamically assigns some dependencies at runtime!
+4.times { counter ->
+    task "task$counter" << {
+        println "I'm task number $counter"
+    }
+}
+task0.dependsOn task2, task3
+
+// You can add actions to existing tasks at runtime, too
+hello2.doLast {
+    // Here, we additionally use the API to access task metadata
+    println "Greetings from the $hello2.name task."
+}
