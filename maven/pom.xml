@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.chrismaloney.sandbox</groupId>
+  <artifactId>hello</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Hello world app</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-junit</artifactId>
+      <version>2.0.0.0</version>
+      <scope>test</scope>
+      <!-- 
+        Need to exclude this, because an old version is specified as a
+        dependency of junit
+      -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>  
+  </dependencies>
+</project>
