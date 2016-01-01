@@ -6,7 +6,7 @@
   <groupId>org.chrismaloney.sandbox</groupId>
   <artifactId>hello</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <name>Hello world app</name>
 
   <dependencies>
@@ -32,4 +32,17 @@
       </exclusions>
     </dependency>  
   </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>wyatt</id>
+      <name>wyatt-releases</name>
+      <url>http://localhost:8081/artifactory/libs-release-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>wyatt</id>
+      <name>wyatt-snapshots</name>
+      <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
