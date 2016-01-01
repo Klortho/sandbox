@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 
+                              http://maven.apache.org/xsd/settings-1.1.0.xsd" 
+          xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <servers>
+    <server>
+      <id>central</id>
+      <username>admin</username>
+      <password>AP3TiWLp3WfMXbYk9DAF5tcQoL9</password>
+    </server>
+    <server>
+      <id>snapshots</id>
+      <username>admin</username>
+      <password>AP3TiWLp3WfMXbYk9DAF5tcQoL9</password>
+    </server>
+    <server>
+      <id>wyatt</id>
+      <username>admin</username>
+      <password>AP3TiWLp3WfMXbYk9DAF5tcQoL9</password>
+    </server>
+  </servers>
+
+  <profiles>
+    <profile>
+      <id>artifactory</id>
+
+      <repositories>
+        <repository>
+          <id>central</id>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <name>libs-release</name>
+          <url>http://localhost:8081/artifactory/libs-release</url>
+        </repository>
+        <repository>
+          <id>snapshots</id>
+          <snapshots />
+          <name>libs-snapshot</name>
+          <url>http://localhost:8081/artifactory/libs-snapshot</url>
+        </repository>
+      </repositories>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <name>plugins-release</name>
+          <url>http://localhost:8081/artifactory/plugins-release</url>
+        </pluginRepository>
+        <pluginRepository>
+          <id>snapshots</id>
+          <snapshots />
+          <name>plugins-snapshot</name>
+          <url>http://localhost:8081/artifactory/plugins-snapshot</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>artifactory</activeProfile>
+  </activeProfiles>
+</settings>
