@@ -33,13 +33,13 @@
             <enabled>false</enabled>
           </snapshots>
           <name>libs-release</name>
-          <url>http://localhost:8081/artifactory/libs-release</url>
+          <url>http://localhost:8081/artifactory/maven</url>
         </repository>
         <repository>
           <id>snapshots</id>
           <snapshots />
           <name>libs-snapshot</name>
-          <url>http://localhost:8081/artifactory/libs-snapshot</url>
+          <url>http://localhost:8081/artifactory/maven</url>
         </repository>
       </repositories>
 
@@ -50,13 +50,13 @@
             <enabled>false</enabled>
           </snapshots>
           <name>plugins-release</name>
-          <url>http://localhost:8081/artifactory/plugins-release</url>
+          <url>http://localhost:8081/artifactory/maven</url>
         </pluginRepository>
         <pluginRepository>
           <id>snapshots</id>
           <snapshots />
           <name>plugins-snapshot</name>
-          <url>http://localhost:8081/artifactory/plugins-snapshot</url>
+          <url>http://localhost:8081/artifactory/maven</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>

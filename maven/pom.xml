@@ -37,12 +37,12 @@
     <repository>
       <id>wyatt</id>
       <name>wyatt-releases</name>
-      <url>http://localhost:8081/artifactory/libs-release-local</url>
+      <url>http://localhost:8081/artifactory/maven</url>
     </repository>
     <snapshotRepository>
       <id>wyatt</id>
       <name>wyatt-snapshots</name>
-      <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+      <url>http://localhost:8081/artifactory/maven</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
