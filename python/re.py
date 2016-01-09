@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Regular expressions in python
 # See https://docs.python.org/2/library/re.html
 

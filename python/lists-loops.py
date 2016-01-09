@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 apes = ["Homo sapiens", "Pan troglodytes", "Gorilla gorilla", "Pan paniscus", 
         "Gorilla beringei", ]
 conserved_sites = [24, 56, 132]

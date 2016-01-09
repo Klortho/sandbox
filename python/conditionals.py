@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 level = 3
 if level > 15:
     print("Woah!")

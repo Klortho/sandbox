@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # This is required if you want to run this python 3 program in python 2:
 #from __future__ import division
 

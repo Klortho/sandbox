@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 dna_file = open("dna.txt")
 dna = dna_file.read().rstrip('\n')   # rstrip is like chomp
 print("Sequence = " + dna + ".")
