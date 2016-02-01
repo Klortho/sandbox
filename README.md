@@ -1,5 +1,5 @@
 Test
 
-<div style='background: grey'>
+<strong><em>
     Hey!
-</div>
+</em></strong>
