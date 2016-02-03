@@ -1,0 +1,6 @@
+<!DOCTYPE x SYSTEM "bad.dtd">
+
+<x>
+  <banana>&amp;</banana>
+</x>
+

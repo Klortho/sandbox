@@ -1,0 +1,9 @@
+<!DOCTYPE x [
+  <!ENTITY foo 'bar'>
+  <!ELEMENT x (banana)*>
+]>
+
+<x>
+  <banana>&amp;</banana>
+</x>
+
