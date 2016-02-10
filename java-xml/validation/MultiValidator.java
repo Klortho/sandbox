@@ -22,33 +22,31 @@ public class MultiValidator {
             SchemaFactory.class.getName() + ":" + XMLConstants.RELAXNG_NS_URI, 
             "com.thaiopensource.relaxng.jaxp.XMLSyntaxSchemaFactory");
 
-        v = new MultiValidator();
+        MultiValidator v = new MultiValidator();
+
+        System.out.println("Validating a good document:");
+        v.xsdValidate("good.xml");
+        v.rngValidate("good.xml");
+
+        System.out.println("\nAnd now a bad one:");
+        v.xsdValidate("bad.xml");
+        v.rngValidate("bad.xml");
     }
 
     public MultiValidator() {
         // Create the schema-language-specific SchemaFactories
         xsdFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         rngFactory = SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
-
-
-
-        System.out.println("Validating a good document:");
-        xsdValidate("good.xml");
-        rngValidate("good.xml");
-
-        System.out.println("\nAnd now a bad one:");
-        xsdValidate("bad.xml");
-        rngValidate("bad.xml");
     }
 
-    public static void xsdValidate(String xml) 
+    public void xsdValidate(String xml) 
       throws Exception
     {
         // Load an XSD schema
         Schema schema = xsdFactory.newSchema(
             new StreamSource(new File("schema.xsd")));
 
-        // create a Validator instance, which can be used to validate an instance document
+        // create a Validator instance
         Validator validator = schema.newValidator();
 
         // validate the DOM tree
@@ -66,8 +64,7 @@ public class MultiValidator {
         }
     }
 
-
-    public static void rngValidate(String xml) 
+    public void rngValidate(String xml) 
       throws Exception
     {
         // load a WXS schema, represented by a Schema instance
@@ -91,7 +88,5 @@ public class MultiValidator {
         if (valid) {
             System.out.println("According to the RNG, this is valid!");
         }
-
     }
-
 }

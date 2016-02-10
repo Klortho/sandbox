@@ -1,0 +1,10 @@
+<element name="note" xmlns="http://relaxng.org/ns/structure/1.0">
+  <zeroOrMore>
+    <element name="to">
+      <text/>
+    </element>
+    <element name="from">
+      <text/>
+    </element>
+  </zeroOrMore>
+</element>
