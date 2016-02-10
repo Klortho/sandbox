@@ -12,25 +12,41 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 // parse an XML document into a DOM tree
-public class TryValidator {
+public class MultiValidator {
+    public SchemaFactory xsdFactory;
+    public SchemaFactory rngFactory;
+
     public static void main(String[] args) throws Exception {
+        // Specify the Java class for relaxng
+        System.setProperty(
+            SchemaFactory.class.getName() + ":" + XMLConstants.RELAXNG_NS_URI, 
+            "com.thaiopensource.relaxng.jaxp.XMLSyntaxSchemaFactory");
 
-        DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = parser.parse(new File("instance.xml"));
-
-        xsdValidate(document);
-
+        v = new MultiValidator();
     }
 
-    public static void xsdValidate(Document document) 
+    public MultiValidator() {
+        // Create the schema-language-specific SchemaFactories
+        xsdFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        rngFactory = SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
+
+
+
+        System.out.println("Validating a good document:");
+        xsdValidate("good.xml");
+        rngValidate("good.xml");
+
+        System.out.println("\nAnd now a bad one:");
+        xsdValidate("bad.xml");
+        rngValidate("bad.xml");
+    }
+
+    public static void xsdValidate(String xml) 
       throws Exception
     {
-        // create a SchemaFactory capable of understanding WXS schemas
-        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-
-        // load a WXS schema, represented by a Schema instance
-        Source schemaFile = new StreamSource(new File("schema.xsd"));
-        Schema schema = factory.newSchema(schemaFile);
+        // Load an XSD schema
+        Schema schema = xsdFactory.newSchema(
+            new StreamSource(new File("schema.xsd")));
 
         // create a Validator instance, which can be used to validate an instance document
         Validator validator = schema.newValidator();
@@ -38,15 +54,44 @@ public class TryValidator {
         // validate the DOM tree
         boolean valid = true;
         try {
-            validator.validate(new DOMSource(document));
+            validator.validate(new StreamSource(new File(xml)));
         } 
         catch (SAXException e) {
-            System.out.println("According to the XSD, this is invalid!");
+            System.out.println("According to the XSD, this is invalid: " +
+                e.getMessage());
             valid = false;
         }
         if (valid) {
             System.out.println("According to the XSD, this is valid!");
         }
+    }
+
+
+    public static void rngValidate(String xml) 
+      throws Exception
+    {
+        // load a WXS schema, represented by a Schema instance
+        Schema schema = rngFactory.newSchema(
+            new StreamSource(new File("schema.rng")));
+
+        // create a Validator instance
+        Validator validator = schema.newValidator();
+
+        // validate the DOM tree
+        boolean valid = true;
+        try {
+            // Jing's validate method doesn't accept a DOMSource
+            validator.validate(new StreamSource(new File(xml)));
+        } 
+        catch (SAXException e) {
+            System.out.println("According to the RNG, this is invalid: " +
+                e.getMessage());
+            valid = false;
+        }
+        if (valid) {
+            System.out.println("According to the RNG, this is valid!");
+        }
 
     }
+
 }
