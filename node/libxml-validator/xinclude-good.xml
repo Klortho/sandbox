@@ -1,0 +1,6 @@
+<!DOCTYPE x PUBLIC "GOOD" "does-not-exist/good.dtd">
+
+<x xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="banana.xml" parse="xml"/>
+</x>
+

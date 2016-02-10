@@ -1,0 +1,10 @@
+<!DOCTYPE x [
+  <!ENTITY foo 'bar'>
+  <!ELEMENT x (banana)*>
+  <!ELEMENT banana (#PCDATA)>
+]>
+
+<x>
+  <banana>&amp;</banana>
+</x>
+

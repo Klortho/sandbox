@@ -1,0 +1,6 @@
+<!DOCTYPE x SYSTEM "good.dtd">
+
+<x>
+  <banana>&amp;</banana>
+</x>
+

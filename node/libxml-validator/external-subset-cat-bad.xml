@@ -1,0 +1,6 @@
+<!DOCTYPE x PUBLIC "BAD" "does-not-exist/bad.dtd">
+
+<x>
+  <banana>&amp;</banana>
+</x>
+
