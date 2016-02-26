@@ -2,6 +2,10 @@
 
 python --version
 
+curl -s -I http://localhost:8080/i-iso-8859.json | grep charset
+curl -s -I http://localhost:8080/i-utf8.json | grep charset
+curl -s -I http://localhost:8080/i-json.json | grep charset
+
 
 #############################################
 # Run with UTF-8 locale
