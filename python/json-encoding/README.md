@@ -1,3 +1,14 @@
+This snippet is a test of Python's requests module, and how it handles encoding
+of various JSON responses, and how that might interact with the user's
+locale setting.
+
+The results show that the library works as expected. It honors the content-type
+header of the server, which always includes (for the server I was running)
+`charset=utf-8`. Note that for the iso-8859 responses, this is wrong.
+The python library has no
+problem interpreting UTF-8 json data, and json data that uses json's `\uxxxx`
+encoding, or in writing it correctly to the output file.
+
 Run a local server with Node.js's `http-server`, then:
 
 ```
@@ -7,10 +18,6 @@ pip install requests
 ./run.sh
 ```
 
-Results show that the library works as expected. It honor the content-type
-header of the server, which, for the iso-8859 responses, is wrong. It has no
-problem interpreting UTF-8 json data, and json data that uses json's `\uxxxx`
-encoding, or in writing it to the output file.
 
 ```
 Python 3.4.3
