@@ -1,8 +1,14 @@
+"use strict";
+
+var net = require('net')
 
 var chat_server = net.createServer(),
     client_list = [];
 
+
 chat_server.on('connection', function(client) {
+  client.write('Hi!\n');
+  console.log("Got connection #" + client_list.length);
   client_list.push(client);
 
   client.on('data', function(data) {
