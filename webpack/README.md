@@ -1,5 +1,12 @@
 # webpack fun
 
+Next up, to figure out: how to include jquery, such that it is
+excluded from the pre-built bundle. I think I need to follow
+this tutorial: [webpack and jquery: include only the parts you 
+need](http://alexomara.com/blog/webpack-and-jquery-include-only-the-parts-you-need/).
+
+## Get started
+
 Build this with
 
 ```
