@@ -1,0 +1,3 @@
+[submodule "sandbox-webpack"]
+	path = sandbox-webpack
+	url = git@github.com:Klortho/sandbox-webpack.git
