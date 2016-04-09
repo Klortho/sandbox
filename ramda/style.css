@@ -1,0 +1,17 @@
+body {
+  background: #CCC;
+}
+
+#paper {
+  position: absolute;
+  background: #EEE; 
+  bottom: 20px; 
+  left: 20px; 
+  top: 20px; 
+  right: 20px;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+}
