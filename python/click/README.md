@@ -1,4 +1,6 @@
-# click
+# click - for building command line tools
+
+See the [documentation](http://click.pocoo.org/5/).
 
 These notes are from going through [this quick video 
 tutorial](https://www.youtube.com/watch?v=kNke39OZ2k0). 
@@ -31,3 +33,8 @@ Then, run some commands:
 hello --name Zombo --repeat 6 floob.txt
 ```
 
+Subcommands:
+
+```
+subcommands speak --help   #=> get subcommand-specific help
+```
