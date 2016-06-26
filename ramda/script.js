@@ -1,4 +1,4 @@
-var paper = Raphael("paper");
+paper = Raphael("paper");
 
 var pp = p => `${p[0]} ${p[1]} `,
     cmd = ltr => R.concat(ltr + ' '),

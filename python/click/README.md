@@ -30,11 +30,15 @@ pip install -e .
 Then, run some commands:
 
 ```
+hello --help
+
+# This writes to floob.txt:
 hello --name Zombo --repeat 6 floob.txt
 ```
 
 Subcommands:
 
 ```
-subcommands speak --help   #=> get subcommand-specific help
+subcommands --help
+subcommands speak --help
 ```
