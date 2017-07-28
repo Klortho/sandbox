@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 dna_file = open("dna.txt")
 dna = dna_file.read().rstrip('\n')   # rstrip is like chomp

@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-
-# This is required if you want to run this python 3 program in python 2:
-#from __future__ import division
+#!/usr/bin/env python
 
 # Function with two arguments, one that has a default value
 def get_at_content(seq, significant_digits=2):
